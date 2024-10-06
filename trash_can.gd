@@ -9,8 +9,7 @@ func _ready() -> void:
 	else:
 		trash_type_string = "recycling"
 
-
-@export var speed = 500
+@export var speed = 800
 
 var trash_type_string: String
 
@@ -20,9 +19,9 @@ func _process(delta: float) -> void:
 		position += speed * delta * Vector2.LEFT
 	if Input.is_action_pressed(trash_type_string + "_right"):
 		position += speed * delta * Vector2.RIGHT
-		 
-
-
+		
+	position = position.clamp(Vector2(50-90, 851), Vector2(1740+90, 851))
+	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not body is Falling:
 		return

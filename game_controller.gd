@@ -1,7 +1,10 @@
 extends Node
+class_name GameController
 
+
+var ggs: PackedScene
 func _ready() -> void:
-	pass # Replace with function body.
+	ggs = load("res://game_over.tscn")
 
 @export var timer: Timer
 @export var falling: PackedScene
@@ -16,15 +19,17 @@ func _process(delta: float) -> void:
 	
 	if (game_time >= game_over_time):
 		print("GAME OVER!")
-		return
+		get_tree().change_scene_to_packed(ggs)
 	
 	get_game_speed(delta)
+
+var dist = 200
 
 func _on_timer_timeout() -> void:
 	var new = falling.instantiate()
 	add_child(new)
-	new.position.y = -10
-	new.position.x = randf_range(100, 1820)
+	new.position.y = -100
+	new.position.x = randf_range(dist, 1920 - dist)
 
 
 func get_game_speed(delta: float):

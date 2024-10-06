@@ -11,6 +11,10 @@ func _ready() -> void:
 		sprite.texture = Globals.trash_sprites.pick_random()
 	else:
 		sprite.texture = Globals.recycling_sprites.pick_random()
+		
+	#angular_velocity = randf_range(-100, 100)
+	constant_force = Vector2( randf_range(-30,30), 0)
+	rotation_degrees = randf_range(0,360)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

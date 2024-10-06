@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpn6gsfx2ad07"
-path="res://.godot/imported/test.png-7c4bd579f555d6da0e43f02e267108e0.ctex"
+uid="uid://qov52bld3j6m"
+path="res://.godot/imported/ryc_1.png-3d205b3228429222ac63c8d80b4bb7b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/trash-textures/test.png"
-dest_files=["res://.godot/imported/test.png-7c4bd579f555d6da0e43f02e267108e0.ctex"]
+source_file="res://assets/recycling-textures/ryc_1.png"
+dest_files=["res://.godot/imported/ryc_1.png-3d205b3228429222ac63c8d80b4bb7b5.ctex"]
 
 [params]
 

@@ -7,14 +7,14 @@
 radius = 54.5894
 
 [node name="Falling" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
-position = Vector2(629, -74)
 mass = 0.2
 gravity_scale = 0.155
+linear_velocity = Vector2(59.355, 0)
 script = ExtResource("1_3qhj4")
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.756, 0.756)
+scale = Vector2(0.378, 0.378)
 texture = ExtResource("2_10ule")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

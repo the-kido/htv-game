@@ -1,0 +1,164 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2fbo1h8pp5nr"]
+
+[ext_resource type="Script" path="res://trash_can.gd" id="1_5jyo8"]
+[ext_resource type="Texture2D" uid="uid://bbjytdk5eq6ke" path="res://assets/bins/garbage_lid.png" id="2_qif02"]
+[ext_resource type="Texture2D" uid="uid://cfjt1rsd3uw0v" path="res://assets/bins/garbage_main.png" id="3_1t86b"]
+[ext_resource type="Texture2D" uid="uid://bx7y2ty2wl6mp" path="res://assets/bins/test.png" id="4_w6gvb"]
+[ext_resource type="Script" path="res://game_controller.gd" id="5_13kfm"]
+[ext_resource type="PackedScene" uid="uid://rfq6b8mdmxct" path="res://falling.tscn" id="6_g2nij"]
+[ext_resource type="Script" path="res://Time.gd" id="7_4wa3x"]
+[ext_resource type="Script" path="res://score.gd" id="8_2h4sk"]
+[ext_resource type="Texture2D" uid="uid://bcpg30u6k5n38" path="res://assets/assets/360_F_88981880_YjJManMJ6hJmKr5CZteFJAkEzXIh8mxW.png" id="9_lkk0s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lypac"]
+bounce = 0.4
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_g3nsl"]
+b = Vector2(121, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtgyo"]
+font_size = 56
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_q5q7e"]
+a = Vector2(0, 2000)
+b = Vector2(0, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hlcxp"]
+a = Vector2(0, 2000)
+b = Vector2(1920, 2000)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pkq3x"]
+a = Vector2(1920, 2000)
+b = Vector2(1920, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Trash" type="StaticBody2D" parent="."]
+position = Vector2(603, 851)
+physics_material_override = SubResource("PhysicsMaterial_lypac")
+script = ExtResource("1_5jyo8")
+
+[node name="GarbageLid" type="Sprite2D" parent="Trash"]
+position = Vector2(46.265, 89.1275)
+scale = Vector2(0.705, 0.705)
+texture = ExtResource("2_qif02")
+
+[node name="GarbageMain" type="Sprite2D" parent="Trash"]
+z_index = 5
+position = Vector2(46.265, 89.1275)
+scale = Vector2(0.705, 0.705)
+texture = ExtResource("3_1t86b")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Trash"]
+polygon = PackedVector2Array(-38, -20, -28, -16, -19, 236, 132, 242, 151, -23, 143, -20, 117, 232, -5, 230)
+
+[node name="Area2D" type="Area2D" parent="Trash"]
+position = Vector2(59, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trash/Area2D"]
+position = Vector2(-61, 6)
+shape = SubResource("SegmentShape2D_g3nsl")
+
+[node name="Label" type="Label" parent="Trash"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "trash"
+
+[node name="Recycling" type="StaticBody2D" parent="."]
+position = Vector2(1187, 851)
+physics_material_override = SubResource("PhysicsMaterial_lypac")
+script = ExtResource("1_5jyo8")
+type = 1
+
+[node name="Test" type="Sprite2D" parent="Recycling"]
+z_index = 5
+position = Vector2(54, 60)
+scale = Vector2(0.672, 0.672)
+texture = ExtResource("4_w6gvb")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Recycling"]
+polygon = PackedVector2Array(-28, -25, -19, 219, 134, 219, 148, -28, 135, -27, 123, 208, -5, 206, -13, -24)
+
+[node name="Area2D" type="Area2D" parent="Recycling"]
+position = Vector2(59, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Recycling/Area2D"]
+position = Vector2(-61, 6)
+shape = SubResource("SegmentShape2D_g3nsl")
+
+[node name="Label" type="Label" parent="Recycling"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "recylcing"
+
+[node name="Game Controller" type="Node" parent="." node_paths=PackedStringArray("timer")]
+script = ExtResource("5_13kfm")
+timer = NodePath("../Timer")
+falling = ExtResource("6_g2nij")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -4.0
+offset_top = 2.0
+offset_right = 1916.0
+offset_bottom = 1082.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Time" type="Label" parent="Control" node_paths=PackedStringArray("controller")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -226.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 77.0
+grow_horizontal = 0
+text = "Time:  0"
+label_settings = SubResource("LabelSettings_jtgyo")
+justification_flags = 35
+script = ExtResource("7_4wa3x")
+controller = NodePath("../../Game Controller")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 226.0
+offset_bottom = 77.0
+text = "Score:  0"
+label_settings = SubResource("LabelSettings_jtgyo")
+justification_flags = 35
+script = ExtResource("8_2h4sk")
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(1074, 735)
+scale = Vector2(4.29444, 4.29444)
+texture = ExtResource("9_lkk0s")
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("SegmentShape2D_q5q7e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("SegmentShape2D_hlcxp")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("SegmentShape2D_pkq3x")
+
+[connection signal="body_entered" from="Trash/Area2D" to="Trash" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Recycling/Area2D" to="Recycling" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="Game Controller" method="_on_timer_timeout"]

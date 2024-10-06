@@ -24,8 +24,20 @@ var trash_texture_dir = "res://assets/trash-textures/"
 
 
 func _ready() -> void:
-	recycling_sprites = load_textures(recycling_texture_dir)
-	trash_sprites = load_textures(trash_texture_dir)
+	recycling_sprites.append(load("res://assets/recycling-textures/ryc_1.png"))
+	recycling_sprites.append(load("res://assets/recycling-textures/ryc_2.png"))
+	recycling_sprites.append(load("res://assets/recycling-textures/ryc_3.png"))
+	recycling_sprites.append(load("res://assets/recycling-textures/ryc_4.png"))	
+	recycling_sprites.append(load("res://assets/recycling-textures/ryc_5.png"))
+	
+	
+	trash_sprites.append(load("res://assets/trash-textures/trash_1.png"))
+	trash_sprites.append(load("res://assets/trash-textures/trash_2.png"))
+	trash_sprites.append(load("res://assets/trash-textures/trash_3.png"))
+	trash_sprites.append(load("res://assets/trash-textures/trash_4.png"))
+	
+	#recycling_sprites = load_textures(recycling_texture_dir)
+	#trash_sprites = load_textures(trash_texture_dir)
 
 func load_textures(dir: String):
 	var textures: Array[Texture2D]
